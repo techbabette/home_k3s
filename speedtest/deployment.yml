@@ -1,0 +1,65 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: speedtest
+  name: speedtest
+  namespace: speedtest
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: speedtest
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: speedtest
+    spec:
+      volumes:
+      - name: config
+        persistentVolumeClaim:
+          claimName: config 
+      containers:
+      - image: lscr.io/linuxserver/speedtest-tracker:latest
+        name: speedtest-tracker
+        volumeMounts:
+          - name: config
+            mountPath: "/config"
+        env:
+        - name: DB_CONNECTION
+          value: "sqlite"
+        - name: PUID
+          value: "1000"
+        - name: PGID
+          value: "1000"
+        - name: TZ 
+          valueFrom:
+            configMapKeyRef:
+              name: speedtest
+              key: APP_TIMEZONE
+        - name: APP_TIMEZONE
+          valueFrom:
+            configMapKeyRef:
+              name: speedtest
+              key: APP_TIMEZONE
+        - name: SPEEDTEST_SCHEDULE
+          valueFrom:
+            configMapKeyRef:
+              name: speedtest
+              key: SPEEDTEST_SCHEDULE
+        - name: SPEEDTEST_SERVERS
+          valueFrom:
+            configMapKeyRef:
+              name: speedtest
+              key: SPEEDTEST_SERVERS
+        - name: APP_KEY
+          valueFrom:
+            secretKeyRef:
+              name: speedtest
+              key: app_key
+        resources: {}
+      
+status: {}

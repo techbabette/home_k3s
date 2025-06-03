@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: config
+  namespace: speedtest
+spec:
+  accessModes:
+    - ReadWriteMany
+  storageClassName: longhorn-unsafe
+  resources:
+    requests:
+      storage: 4Gi

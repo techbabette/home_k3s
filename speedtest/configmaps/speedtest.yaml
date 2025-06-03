@@ -1,0 +1,10 @@
+apiVersion: v1
+data:
+  SPEEDTEST_SCHEDULE: '0 */4 * * *'
+  APP_TIMEZONE: 'Europe/Belgrade'
+  SPEEDTEST_SERVERS: "43446"
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: speedtest
+  namespace: speedtest
