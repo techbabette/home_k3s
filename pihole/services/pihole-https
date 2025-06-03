@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: pihole
+  name: pihole-https
+  namespace: pihole
+spec:
+  ports:
+  - name: pihole-http
+    port: 80
+    protocol: TCP
+    targetPort: 80
+  - name: pihole-https
+    port: 443
+    protocol: TCP
+    targetPort: 443
+  selector:
+    app: pihole
+  type: ClusterIP

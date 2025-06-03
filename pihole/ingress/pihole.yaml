@@ -17,7 +17,7 @@ spec:
       paths:
       - backend:
           service:
-            name: pihole1
+            name: pihole-https
             port:
               number: 80
         path: /

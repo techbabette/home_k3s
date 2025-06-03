@@ -7,14 +7,6 @@ metadata:
   namespace: pihole
 spec:
   ports:
-  - name: pihole-http
-    port: 80
-    protocol: TCP
-    targetPort: 80
-  - name: pihole-https
-    port: 443
-    protocol: TCP
-    targetPort: 443
   - name: dns
     port: 53
     protocol: TCP
