@@ -1,0 +1,34 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: pihole
+  name: pihole1
+  namespace: pihole
+spec:
+  ports:
+  - name: pihole-http
+    port: 80
+    protocol: TCP
+    targetPort: 80
+  - name: pihole-https
+    port: 443
+    protocol: TCP
+    targetPort: 443
+  - name: dns
+    port: 53
+    protocol: TCP
+    targetPort: 53
+  - name: dns-udp
+    port: 53
+    protocol: UDP
+    targetPort: 53
+  - name: client-udp
+    port: 67
+    protocol: UDP
+    targetPort: 67 
+  selector:
+    app: pihole
+  loadBalancerIP: 192.168.1.160
+  externalTrafficPolicy: Local
+  type: LoadBalancer
