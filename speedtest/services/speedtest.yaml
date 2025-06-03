@@ -18,7 +18,6 @@ spec:
     targetPort: 443
   selector:
     app: speedtest
-  type: LoadBalancer
-  loadBalancerIP: "192.168.1.164"
+  type: ClusterIP 
 status:
   loadBalancer: {}
