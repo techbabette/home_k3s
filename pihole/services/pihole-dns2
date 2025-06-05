@@ -22,5 +22,6 @@ spec:
   selector:
     app: pihole
   loadBalancerIP: 192.168.1.162
+  allocateLoadBalancerNodePorts: false
   externalTrafficPolicy: Local
   type: LoadBalancer
